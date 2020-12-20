@@ -2,7 +2,36 @@
   require_once 'core/init.php';
 
   if(Input::exists()){
-    echo Input::get('username');
+  $validate = new Validate();
+  $validation = $validate->check($_POST, array(
+    'username' => array(
+      'required' => true,
+      'min' => 2,
+      'max' => 30,
+      'uniqe' => 'users'
+    ),
+    'password' => array(
+      'required' => true,
+      'min' => 6
+    ),
+    'password_again' => array(
+      'required' => true,
+      'matches' => 'password'
+    ),
+    'name' => array(
+      'required' => true,
+      'min' => 2,
+      'max' => 50,
+    )
+  ));
+  if($validation->passed()){
+    echo 'passed';
+  } else {
+    foreach ($validation->errors() as $error){
+      echo $error, '<br>';
+    }
+  }
+
   }
 
 
@@ -12,7 +41,7 @@
 <form action="" method="post">
   <div class="field">
     <label for="username">Username</label>
-    <input type="text" name="username" id="username" autocomplete="off" value="">
+    <input type="text" name="username" id="username" autocomplete="off" value="<?php echo escape(Input::get('username'));?>">
   </div>
   <div class="field">
     <label for="password">Enter your password</label>
@@ -24,7 +53,7 @@
   </div>
   <div class="field">
     <label for="name">Your name</label>
-    <input type="text" name="name" id="name" autocomplete="off" value="">
+    <input type="text" name="name" id="name" autocomplete="off" value="<?php echo escape(Input::get('name'));?>">
   </div>
 
   <input type="submit" value="Register">
