@@ -93,6 +93,16 @@ class User {
     return (!empty($this->_data)) ? true : false;
   }
 
+  public function update($fields = array(), $id = null){
+    if(!$id && $this->isLoggedIn()){
+      $id = $this->data()->id;
+    }
+
+    if(!$this->_db->update('users', $id, $fields)){
+      throw new Exception('There was a problem updating.');
+    }
+  }
+
   public function logout(){
     $this->_db->delete('users_session', array('user_id', '=', $this->data()->id));
 
