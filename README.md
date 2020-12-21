@@ -1,7 +1,5 @@
 # ooploginregister
 
-Login/ Register system OOP
-
 Simple oop login/register system
 <ul>
     <li>Log in</li>
@@ -12,3 +10,5 @@ Simple oop login/register system
     <li>Change password</li>
     <li>Profile</li>
 </ul>
+
+Without css
