@@ -14,7 +14,7 @@ require_once 'core/init.php';
         $login = $user->login(Input::get('username'), Input::get('password'));
 
         if($login){
-          echo 'okay';
+					Redirect::to('index.php');
         } else {
           echo 'sorry use your username';
         }
