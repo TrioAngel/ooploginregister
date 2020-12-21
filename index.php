@@ -8,7 +8,7 @@ if(Session::exists('home')){
 $user = new User();
 if($user->isLoggedIn()){
 ?>
-  <p>Hello <i><?php echo escape($user->data()->username); ?></i>!!!</p>
+  <p>Hello <a href="profile.php?user=<?php echo escape($user->data()->id);?>"><i><?php echo escape($user->data()->username); ?></i></a>!!!</p>
 
   <ul>
 	  <li><a href="logout.php">Log out</a></li>
